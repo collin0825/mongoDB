@@ -1,0 +1,24 @@
+1. 查詢每一部電影評價大於4的評論數
+db.rating.aggregate([
+{
+	$match: {rating: {$gt: 4.0}}
+},
+{
+	$group: {
+		_id: "$movieId",
+		count: {$sum: 1}
+	}
+}
+]).explain("executionStats")
+
+2. 找出所有在2015年的喜劇電影
+db.getCollection("movie").find({
+	"genres": "Comedy",
+	"title": {$regex: \/(2015\)$/}
+}).explain("executionStats")
+
+3. 找出所有2010年後的寶來塢的電影
+db.getCollection("tag").find({
+	"tag": "bollywood",
+	"timestamp": {'$gte': "2010"}
+}).explain("executionStats)
