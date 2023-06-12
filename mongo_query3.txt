@@ -1,0 +1,5 @@
+3. 找出所有2010年後的寶來塢的電影
+db.getCollection("tag").find({
+	"tag": "bollywood",
+	"timestamp": {'$gte': "2010"}
+}).explain("executionStats)

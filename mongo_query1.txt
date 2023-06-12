@@ -1,0 +1,12 @@
+1. 查詢每一部電影評價大於4的評論數
+db.rating.aggregate([
+{
+	$match: {rating: {$gt: 4.0}}
+},
+{
+	$group: {
+		_id: "$movieId",
+		count: {$sum: 1}
+	}
+}
+]).explain("executionStats")

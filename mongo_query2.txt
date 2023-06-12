@@ -1,0 +1,5 @@
+2. 找出所有在2015年的喜劇電影
+db.getCollection("movie").find({
+	"genres": "Comedy",
+	"title": {$regex: \/(2015\)$/}
+}).explain("executionStats")
